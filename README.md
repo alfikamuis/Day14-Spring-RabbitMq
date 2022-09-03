@@ -7,6 +7,8 @@ database accounts
 # Registrasi valid
 
 ![image](https://user-images.githubusercontent.com/38674801/188280842-8c0d0657-d410-41c2-a41d-266bb856daf7.png)
+![image](https://user-images.githubusercontent.com/38674801/188282083-328bc6e4-7a6f-4cad-8dd4-6fd45455e2e6.png)
+
 
 # Pesan registrasi berhasil dikirim
 
