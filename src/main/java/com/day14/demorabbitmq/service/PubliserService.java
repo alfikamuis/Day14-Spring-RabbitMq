@@ -1,6 +1,9 @@
 package com.day14.demorabbitmq.service;
 
 import com.day14.demorabbitmq.model.Accounts;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +14,17 @@ import org.springframework.stereotype.Service;
 public class PubliserService {
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private AmqpTemplate rabbitTemplate;
 
     @Autowired
-    public PubliserService(RabbitTemplate rabbitTemplate){
-        this.rabbitTemplate = rabbitTemplate;
-    }
+    private Queue queue;
 
-    @Value("${spring.rabbitmq.exchange}")
-    private String exchange;
-    @Value("${spring.rabbitmq.routingkey}")
-    private String routingkey;
+    private static Logger logger = (Logger) LogManager.getLogger(PubliserService.class.toString());
+
     public void send(Accounts accounts){
-        rabbitTemplate.convertAndSend(exchange,routingkey, accounts);
+        rabbitTemplate.convertAndSend(queue.getName(), accounts);
+        String theMessages ="username: "+ accounts.getUsername() +", email: "+ accounts.getEmail() + " terdaftar sebagai user baru\n";
+        logger.info("Sending messages - "+theMessages);
     }
 }
 
