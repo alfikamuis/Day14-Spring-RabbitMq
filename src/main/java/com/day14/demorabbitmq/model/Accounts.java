@@ -1,15 +1,17 @@
 package com.day14.demorabbitmq.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Getter
-@Setter
+@Getter @Setter @ToString
+@AllArgsConstructor @NoArgsConstructor
+@Component
 @Entity
 @Table(name = "accounts")
-public class Accounts {
+public class Accounts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
